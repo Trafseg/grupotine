@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#A41414"><meta name="robots" content="noindex,nofollow">
+<title>Diagnóstico Gratuito | Grupo TINE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--soft:#f7f5f5;--card:#ffffff;--border:#e2dede;--accent:#A41414;--accent-soft:rgba(164,20,20,.08);--text:#111111;--muted:#5f5b5b;--green:#25D366}
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,#fff 0%,#faf3f3 100%);min-height:100svh;border-top:6px solid var(--accent)}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+[hidden]{display:none!important}
+.shell{max-width:900px;margin:auto;padding:24px 28px;min-height:calc(100svh - 6px);display:flex;flex-direction:column}
+.header{display:flex;align-items:center;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:16px;min-width:0}
+.brand img{width:120px;height:120px;object-fit:contain;display:block}
+.brand-texto strong{display:block;font-size:16px;font-weight:700;letter-spacing:-.2px}
+.brand-texto span{display:block;font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.label{margin-left:auto;font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--accent);border:1px solid rgba(164,20,20,.35);padding:8px 12px;border-radius:99px;font-weight:600;white-space:nowrap}
+.form-headline{font-size:clamp(20px,3vw,28px);font-weight:800;text-align:center;margin:26px 0 0;line-height:1.3;letter-spacing:-.5px}
+.accent{color:var(--accent)}
+.progress-area{margin-top:22px}
+.progress-meta{display:flex;justify-content:flex-end;font-size:11px;color:var(--muted);margin-bottom:8px}
+.track{height:4px;background:var(--border);border-radius:10px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .35s}
+main{flex:1;display:flex;align-items:center;padding:36px 0}
+.screen{width:100%;max-width:640px;margin:auto;animation:enter .35s ease}
+.step-label{color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center}
+.step-label b{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border-radius:8px;background:var(--accent-soft);margin-right:8px}
+h2{font-size:clamp(19px,2.6vw,27px);letter-spacing:-.8px;line-height:1.25;margin:16px 0 14px;font-weight:800}
+h2:focus{outline:none}
+.desc{font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 20px}
+.field{width:100%;background:transparent;border:0;border-bottom:2px solid var(--border);border-radius:0;padding:12px 0;color:var(--text);font-size:clamp(18px,2.6vw,24px);outline:none;transition:border-color .2s}
+.field::placeholder{color:#a19c9c}
+.field:focus{border-color:var(--accent)}
+.field[aria-invalid=true]{border-color:var(--accent)}
+.options{display:grid;gap:10px}
+.option{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:13px;line-height:1.5;transition:border-color .2s,background .2s}
+.option:hover{border-color:var(--accent)}
+.option[aria-checked=true]{border-color:var(--accent);background:var(--accent-soft)}
+.key{flex-shrink:0;border:1px solid #cfc8c8;border-radius:6px;width:26px;height:26px;display:grid;place-items:center;color:var(--accent);font-size:11px;font-weight:700}
+.option[aria-checked=true] .key{background:var(--accent);color:#fff;border-color:var(--accent)}
+.check{margin-left:auto;color:var(--accent);visibility:hidden}
+.option[aria-checked=true] .check{visibility:visible}
+.actions{display:flex;align-items:center;gap:16px;margin-top:22px}
+.primary{display:inline-flex;justify-content:center;align-items:center;gap:10px;border:0;background:var(--accent);color:#fff;font-size:14px;font-weight:700;padding:15px 22px;border-radius:12px;text-decoration:none;transition:filter .2s;box-shadow:0 10px 24px rgba(164,20,20,.22)}
+.primary:hover{filter:brightness(1.08)}
+.primary.whats{background:var(--green);color:#072812;box-shadow:none}
+.error{color:var(--accent);font-size:12px;min-height:18px;margin:10px 0 0}
+.micro{font-size:11px;color:var(--muted);margin-top:14px;line-height:1.6}
+.bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--border);padding-top:16px;margin-top:8px;color:var(--muted);font-size:10px;flex-wrap:wrap}
+.back,.restart{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:9px;padding:8px 12px;font-size:11px}
+.back:hover,.restart:hover{color:var(--accent);border-color:var(--accent)}
+.thanks{text-align:center}
+.thanks .step-label{justify-content:center}
+.thanks .desc{max-width:520px;margin:0 auto 22px}
+.thanks .primary{width:100%;max-width:420px}
+.success{width:60px;height:60px;margin:0 auto 18px;display:grid;place-items:center;border-radius:16px;background:var(--accent-soft);border:1px solid rgba(164,20,20,.35);font-size:26px;color:var(--accent)}
+.summary{text-align:left;background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:18px;margin:22px 0}
+.summary h3{font-size:12px;color:var(--accent);margin:0 0 10px}
+.summary dl{margin:0}
+.summary .row{display:grid;grid-template-columns:130px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;line-height:1.5}
+.summary .row:last-child{border:0}
+.summary dt{color:var(--muted)}
+.summary dd{margin:0;overflow-wrap:anywhere}
+.restart{margin-top:6px}
+.welcome{text-align:center;max-width:680px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(164,20,20,.3);background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:7px 13px;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.eyebrow:before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%}
+.welcome h1{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-1.4px;line-height:1.15;margin:20px 0 16px}
+.welcome h1 span{color:var(--accent)}
+.welcome .desc{max-width:540px;margin:0 auto 28px;font-size:14px}
+.welcome .primary{font-size:15px;padding:16px 24px;border-radius:14px}
+.welcome .micro{text-align:center}
+.endereco{display:flex;align-items:center;gap:16px;max-width:580px;margin:36px auto 0;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:14px;padding:16px 18px;text-align:left;box-shadow:0 6px 18px rgba(0,0,0,.04)}
+.endereco-icone{flex-shrink:0;width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent)}
+.endereco-texto{min-width:0}
+.endereco-titulo{display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-weight:600}
+.endereco strong{display:block;font-size:15px;margin:4px 0}
+.endereco small{display:block;font-size:12px;color:var(--muted);line-height:1.5}
+.endereco-link{margin-left:auto;flex-shrink:0;border:1px solid var(--border);color:var(--accent);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap}
+@media(max-width:560px){.endereco{flex-wrap:wrap}.endereco-link{margin-left:0}}
+@keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){.shell{padding:18px 16px 22px}.brand img{width:90px;height:90px}.brand-texto{display:none}.label{display:none}.summary .row{grid-template-columns:100px 1fr}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="header"><div class="brand"><img src="data:image/jpeg;base64,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" alt="Grupo TINE"><div class="brand-texto"><strong>Grupo TINE</strong><span>Segurança inteligente</span></div></div><span class="label">Diagnóstico gratuito</span></header>
+<p class="form-headline" id="formHeadline">Faça seu diagnóstico de <span class="accent">segurança</span> abaixo</p>
+<div class="progress-area" id="progressArea">
+<div class="progress-meta"><span id="progressPercent">0%</span></div>
+<div class="track" role="progressbar" aria-label="Progresso do diagnóstico" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0"><div class="fill" id="fill"></div></div>
+</div>
+<main id="main"></main>
+<footer class="bottom"><span>Grupo TINE · Jundiaí/SP</span><button class="back" id="back" hidden type="button">← Voltar</button></footer>
+</div>
+<noscript>Ative o JavaScript do navegador para responder ao diagnóstico.</noscript>
+<script>
+'use strict';
+const WHATSAPP_NUMERO='5511994262338';
+const PLANILHA_WEBHOOK='';
+const questions=[
+ {id:'name',resumo:'Nome',group:'Identificação e contato',title:'Como podemos chamar você?',label:'Nome completo',placeholder:'Digite seu nome completo',autocomplete:'name'},
+ {id:'phone',resumo:'WhatsApp',group:'Identificação e contato',title:'Qual é o seu WhatsApp?',desc:'Informe seu número com DDD para que nossa equipe possa conversar com você.',label:'WhatsApp com DDD',placeholder:'(11) 99999-9999',autocomplete:'tel-national',type:'tel'},
+ {id:'location',resumo:'Localização',group:'Identificação e contato',title:'Onde fica o imóvel?',desc:'Informe o bairro e a cidade do imóvel que você deseja proteger.',label:'Bairro e cidade do imóvel',placeholder:'Ex.: Centro, Jundiaí',autocomplete:'off'},
+ {id:'owner',resumo:'Decisor',group:'Identificação e contato',title:'Você é o proprietário ou tomador de decisão do imóvel?',options:['Sim','Não']},
+ {id:'property',resumo:'Imóvel',group:'Seu imóvel',title:'Qual tipo de imóvel você deseja proteger hoje?',options:['🏡 Casa ou Sobrado Residencial','🏢 Empresa, Comércio ou Galpão (CNPJ)','🏬 Condomínio Residencial ou Comercial (Síndico / Administradora)','🚜 Chácara, Sítio ou Área Rural']},
+ {id:'situation',resumo:'Sistema atual',group:'Sua segurança hoje',title:'Você já possui algum sistema de segurança ou empresa no local?',options:['Não tenho nada instalado ainda.','Tenho equipamentos próprios, mas NÃO são monitorados 24h.','Já tenho empresa de monitoramento, mas estou insatisfeito com o serviço/preço.']},
+ {id:'urgency',resumo:'Prazo',group:'Prazo do projeto',title:'Qual é o prazo em que você pretende implementar essa solução?',options:['Com urgência (mudei recentemente, estou em obra ou tive um incidente)','Nas próximas 2 a 3 semanas','Apenas pesquisando para um projeto futuro']}
+];
+const answers={};let step=-1;let autoAdvanceTimer=null;
+const main=document.getElementById('main'),back=document.getElementById('back');
+const perguntasAtivas=()=>questions.filter(q=>!q.when||q.when(answers));
+function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function focusTitle(){main.querySelector('h2')?.focus({preventScroll:true});window.scrollTo({top:0});}
+function render(){
+ clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null;
+ const boasVindas=step===-1;
+ document.getElementById('formHeadline').hidden=boasVindas;
+ document.getElementById('progressArea').hidden=boasVindas;
+ if(boasVindas){back.hidden=true;renderBoasVindas();focusTitle();return;}
+ const lista=perguntasAtivas(),total=lista.length,finished=step>=total,completed=Math.min(step,total);
+ const pct=Math.round(completed/total*100);
+ document.getElementById('progressPercent').textContent=pct+'%';
+ document.getElementById('fill').style.width=pct+'%';
+ const barra=document.querySelector('[role=progressbar]');
+ barra.setAttribute('aria-valuenow',completed);barra.setAttribute('aria-valuemax',total);
+ back.hidden=step===0;
+ if(finished)renderFinal(lista);else renderQuestion(lista[step]);
+ focusTitle();
+}
+function renderBoasVindas(){
+ main.innerHTML=`<section class="screen welcome"><div class="eyebrow">Segurança para condomínios e empresas</div><h1 tabindex="-1">Segurança inteligente para<br><span>o que você mais protege.</span></h1><p class="desc">Conte ao Grupo TINE o que você precisa proteger. Em 7 perguntas rápidas, você recebe uma estimativa personalizada.</p><button class="primary" id="iniciar" type="button">Iniciar diagnóstico gratuito <span aria-hidden="true">→</span></button><p class="micro">Poucas perguntas rápidas · Sem compromisso</p><div class="endereco"><div class="endereco-icone" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="endereco-texto"><span class="endereco-titulo">Grupo TINE · Jundiaí</span><strong>Estamos perto de você.</strong><small>Av. Francisco Pereira de Castro, 295, Jundiaí - SP, 13208-110</small></div><a class="endereco-link" href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Francisco+Pereira+de+Castro%2C+295%2C+Jundiai+-+SP%2C+13208-110" target="_blank" rel="noopener noreferrer">Ver no mapa ↗</a></div></section>`;
+ document.getElementById('iniciar').onclick=()=>{step=0;render();};
+}
+function renderQuestion(q){
+ const corpo=q.options
+  ?`<div class="options" role="radiogroup" aria-labelledby="questionTitle">${q.options.map((opcao,i)=>`<button type="button" class="option" role="radio" aria-checked="${answers[q.id]===opcao}" data-index="${i}" tabindex="${answers[q.id]===opcao||(!answers[q.id]&&i===0)?0:-1}"><span class="key" aria-hidden="true">${String.fromCharCode(65+i)}</span><span>${esc(opcao)}</span><span class="check" aria-hidden="true">✓</span></button>`).join('')}</div>`
+  :`<input class="field" id="answer" aria-label="${esc(q.label)}" aria-describedby="description error" type="${q.type||'text'}" ${q.type==='tel'?'inputmode="tel"':''} autocomplete="${q.autocomplete}" maxlength="${q.type==='tel'?20:120}" placeholder="${esc(q.placeholder)}" value="${esc(answers[q.id])}" required>`;
+ main.innerHTML=`<section class="screen"><div class="step-label"><b>${step+1}</b>${esc(q.group)}</div><h2 id="questionTitle" tabindex="-1">${esc(q.title)}</h2>${q.desc?`<p class="desc" id="description">${esc(q.desc)}</p>`:''}<form id="questionForm" novalidate>${corpo}<p class="error" id="error" role="alert"></p><div class="actions"><button class="primary" type="submit">${step===perguntasAtivas().length-1?'Concluir diagnóstico':'Continuar'} →</button></div></form></section>`;
+ if(q.options){
+  main.querySelectorAll('.option').forEach(botao=>botao.onclick=()=>selectOption(Number(botao.dataset.index)));
+ }else{
+  const input=document.getElementById('answer');
+  input.addEventListener('input',()=>{answers[q.id]=input.value;input.removeAttribute('aria-invalid');document.getElementById('error').textContent='';});
+  if(q.type==='tel')input.addEventListener('input',()=>{
+   let digits=input.value.replace(/\D/g,'');
+   if(digits.startsWith('55')&&digits.length>11)digits=digits.slice(2);
+   digits=digits.slice(0,11);
+   input.value=digits.length>2?'('+digits.slice(0,2)+') '+digits.slice(2,digits.length>10?7:6)+(digits.length>6?'-'+digits.slice(digits.length>10?7:6):''):digits;
+   answers[q.id]=input.value;
+  });
+ }
+ document.getElementById('questionForm').onsubmit=evento=>{evento.preventDefault();advance();};
+}
+function selectOption(index){
+ const q=perguntasAtivas()[step];
+ if(!q?.options?.[index])return;
+ answers[q.id]=q.options[index];
+ main.querySelectorAll('.option').forEach((botao,i)=>{botao.setAttribute('aria-checked',i===index);botao.tabIndex=i===index?0:-1;});
+ document.getElementById('error').textContent='';
+ clearTimeout(autoAdvanceTimer);
+ const etapaSelecionada=step;
+ autoAdvanceTimer=setTimeout(()=>{autoAdvanceTimer=null;if(step===etapaSelecionada)advance();},400);
+}
+function advance(){
+ const q=perguntasAtivas()[step];
+ const value=(answers[q.id]||'').trim();
+ let error='';
+ if(!value)error=q.options?'Selecione uma opção para continuar.':'Preencha este campo para continuar.';
+ else if(q.id==='name'&&value.split(/\s+/).length<2)error='Informe seu nome completo, com nome e sobrenome.';
+ else if(q.id==='phone'&&!/^[1-9]{2}\d{8,9}$/.test(value.replace(/\D/g,'')))error='Informe um número válido com DDD (10 ou 11 dígitos).';
+ else if(q.id==='location'&&value.length<4)error='Informe o bairro e a cidade do imóvel.';
+ if(error){
+  document.getElementById('error').textContent=error;
+  const input=document.getElementById('answer');
+  if(input){input.setAttribute('aria-invalid','true');input.focus();}
+  return;
+ }
+ answers[q.id]=value;
+ step++;
+ render();
+}
+function renderFinal(lista){
+ const rows=lista.filter(q=>q.resumo&&answers[q.id]).map(q=>[q.resumo,answers[q.id]]);
+ const message='Olá, Grupo TINE! Fiz o diagnóstico no site e gostaria de receber uma estimativa.\n\n'+rows.map(([label,valor])=>label+': '+valor).join('\n');
+ const waLink=(WHATSAPP_NUMERO?'https://wa.me/'+WHATSAPP_NUMERO:'https://wa.me/')+'?text='+encodeURIComponent(message);
+ const digitosLead=(answers.phone||'').replace(/\D/g,'');
+ const leadWaLink=digitosLead?'https://wa.me/55'+digitosLead:'';
+ if(PLANILHA_WEBHOOK){
+  const dados={};
+  lista.forEach(q=>dados[q.id]=answers[q.id]||'');
+  fetch(PLANILHA_WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({...dados,whatsappLink:leadWaLink})}).catch(()=>{});
+ }
+ const primeiroNome=answers.name.trim().split(/\s+/)[0];
+ main.innerHTML=`<section class="screen thanks"><div class="success" aria-hidden="true">✓</div><div class="step-label">Tudo pronto para o próximo passo</div><h2 tabindex="-1">Diagnóstico concluído, ${esc(primeiroNome)}!</h2><p class="desc">Analisamos as melhores opções de segurança para o seu imóvel. Clique abaixo para receber sua estimativa no WhatsApp com um dos nossos consultores.</p><a class="primary whats" id="whatsapp" href="${esc(waLink)}" target="_blank" rel="noopener noreferrer">Falar agora com o Grupo TINE no WhatsApp</a><p class="micro">O atendimento começa após você enviar a mensagem no WhatsApp.</p><div class="summary"><h3>CONFIRA SUAS RESPOSTAS</h3><dl>${rows.map(([label,valor])=>`<div class="row"><dt>${esc(label)}</dt><dd>${esc(valor)}</dd></div>`).join('')}</dl></div><button class="restart" id="restart" type="button">Recomeçar diagnóstico</button></section>`;
+ document.getElementById('restart').onclick=()=>{for(const chave of Object.keys(answers))delete answers[chave];step=-1;render();};
+}
+back.onclick=()=>{if(step>0){step--;render();}};
+
+document.addEventListener('keydown',evento=>{
+ if(evento.ctrlKey||evento.altKey||evento.metaKey||evento.target.matches('input,textarea'))return;
+ const q=perguntasAtivas()[step];
+ if(!q?.options)return;
+ const tecla=evento.key.toUpperCase();
+ if(/^[A-D]$/.test(tecla)){
+  const index=tecla.charCodeAt(0)-65;
+  if(index<q.options.length){evento.preventDefault();selectOption(index);}
+ }
+});
+render();
+</script>
+</body>
+</html>
